@@ -32,5 +32,5 @@ However, it's better to try to keep up with the C API as it is being built than 
 [vala]:https://wiki.gnome.org/Projects/Vala
 [tensorflow]:https://www.tensorflow.org/
 [c_api]:https://www.tensorflow.org/code/tensorflow/c/c_api.h
-[tf_bindings]:https://www.tensorflow.org/how_tos/language_bindings|official site
+[tf_bindings]:https://www.tensorflow.org/how_tos/language_bindings
 [vlb]:https://wiki.gnome.org/Projects/Vala/LegacyBindings

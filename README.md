@@ -40,7 +40,7 @@ This step is the same as the one for the [Rust bindings][rust_bindings]:
 
 ``` bash
 mkdir build && cd build
-meson
+PKG_CONFIG_PATH=`pwd`/../pkgconfig meson --prefix <install prefix (/usr/local by default)>
 ninja
 ninja test
 sudo ninja install

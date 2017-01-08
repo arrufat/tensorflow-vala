@@ -1,6 +1,6 @@
 # TensorFlow for Vala
 
-This package contains experimental TensorFlow bindings for Vala.
+This package contains experimental Vala bindings for TensorFlow.
 
 ## Current Status ##
 
@@ -23,6 +23,37 @@ which can be found in the [official site][tf_bindings].
 
 ### Install the TensorFlow C library
 
+This step is the same as the one for the [Rust bindings][rust_bindings]:
+
+1. Install [SWIG](http://www.swig.org) and [NumPy](http://www.numpy.org).  The
+   version from your distro's package manager should be fine for these two.
+1. [Install Bazel](http://bazel.io/docs/install.html), which you may need to do
+   from source.
+1. `git clone --recurse-submodules https://github.com/tensorflow/tensorflow`
+1. `cd tensorflow`
+1. `./configure`
+1. `bazel build -c opt --jobs=1 tensorflow:libtensorflow_c.so`
+
+### Install the Vala bindings
+
+1. Clone this repository and `cd` into it and:
+
+``` bash
+mkdir build && cd build
+meson
+ninja
+ninja test
+sudo ninja install
+```
+
+### On Arch Linux
+
+``` bash
+yaourt -S tensorflow-vala
+```
+
+Which will drag `tensorflow` as a dependency.
+
 ## Disclaimer ##
 
 It is worth noticing that the bindings have not been fully tested.
@@ -34,3 +65,4 @@ However, it's better to try to keep up with the C API as it is being built than 
 [c_api]:https://www.tensorflow.org/code/tensorflow/c/c_api.h
 [tf_bindings]:https://www.tensorflow.org/how_tos/language_bindings
 [vlb]:https://wiki.gnome.org/Projects/Vala/LegacyBindings
+[rust_bindings]: https://github.com/tensorflow/rust

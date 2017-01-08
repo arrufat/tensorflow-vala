@@ -34,3 +34,10 @@
 
 # Build directory
 build
+
+# Vim swap files
+*.swp
+
+# Genereated C sources
+*.c
+*.h

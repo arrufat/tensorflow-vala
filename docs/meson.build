@@ -1,7 +1,7 @@
 valadoc = find_program('valadoc', required: false)
 
 if valadoc.found()
-    valadoc_command = [valadoc, '--package-name', 'tensorflow-@0@'.format(api_version),
+    valadoc_command = [valadoc, '--package-name', 'TensorFlow,
                        '--package-version', meson.project_version(), '--pkg=glib-2.0',
                        '--pkg=gobject-2.0', '--pkg=tensorflow',
                        '--force', '--directory', '@OUTPUT@', '@INPUT@']

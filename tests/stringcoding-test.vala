@@ -14,9 +14,11 @@ public int main (string[] args) {
 		size_t dst_length;
 		print ("%s\n", test_string);
 		var enc_size = string_encode (dec, dec.length + 1, enc, string_encoded_size(dec.length + 1), status);
+		assert (status.code () == Code.OK);
 		stdout.printf ("src: %s (%lu)\n", dec, dec.length);
 		stdout.printf ("dst: %s (%lu)\n", enc, enc_size);
 		enc_size = string_decode (enc, enc_size, out dec, out dst_length, status);
+		assert (status.code () == Code.OK);
 		stdout.printf ("src: %s (%lu)\n", enc, enc_size);
 		stdout.printf ("dst: %s (%lu)\n", dec, dec.length);
 		assert (dec == test_string);

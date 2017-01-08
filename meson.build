@@ -20,3 +20,4 @@ subdir('tests')
 subdir('docs')
 
 install_subdir(join_paths(meson.current_source_dir(), 'vapi'), install_dir: 'share/vala')
+install_subdir(join_paths(meson.current_source_dir(), 'pkgconfig'), install_dir: 'share/lib')

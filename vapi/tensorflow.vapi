@@ -208,7 +208,7 @@ namespace TensorFlow {
 	 * It does not write to memory more than ''dst_len'' bytes beyond ''dst''.
 	 *
 	 * @param src string to encode
-	 * @param src_len length of the string to encode, use src.length
+	 * @param src_len length of the string to encode, use ''src.length + 1'' to include the null terminating character
 	 * @param dst encoded string in the STRING tensor format
 	 * @param dst_len maximum encoded length, it should be at least {@link string_encoded_size} (src_len)
 	 * @param status the status code and message of the operation
@@ -226,9 +226,9 @@ namespace TensorFlow {
 	 * On success sets dst to the start of the decoded string and dst_len to its length.
 	 *
 	 * @param src the encoded string
-	 * @param src_len length of the encoded string, use src.length
+	 * @param src_len length of the encoded string, use the result of {@link string_encode}
 	 * @param dst the decoded string
-	 * @param dst_len the length of the decoded string dst
+	 * @param dst_len the length of the decoded string ''dst''
 	 * @param status the status code and message of the operation
 	 * @return on success: the number of bytes starting at src consumed while decoding <<BR>>
 	 * otherwhise: dst and dst_len are undefined and an error is set in status

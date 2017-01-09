@@ -38,6 +38,7 @@ public int main (string[] args) {
 		}
 		var tensor = new Tensor (DataType.FLOAT, dims, byte_size);
 		assert (tensor.byte_size () == byte_size);
+		assert (tensor.num_dim() == dims.length);
 		for (var i = 0; i < tensor.num_dim (); i++) {
 			assert (dims[i] == i + 1);
 		}

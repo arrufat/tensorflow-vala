@@ -6,7 +6,7 @@ using TensorFlow;
 public int main (string[] args) {
 	Test.init (ref args);
 
-	Test.add_func ("/string_encode", () => {
+	Test.add_func ("/string_coding", () => {
 		var status = new Status ();
 		var test_string = "A long test string with 1 number";
 		var dec = test_string;

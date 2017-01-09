@@ -1,8 +1,11 @@
-test('status', executable('status-test', ['status-test.vala'],
+test('Status', executable('status-test', ['status-test.vala'],
      dependencies: [glib, gobject, tensorflow]))
 
-test('tensor', executable('tensor-test', ['tensor-test.vala'],
+test('Tensor', executable('tensor-test', ['tensor-test.vala'],
      dependencies: [glib, gobject, tensorflow]))
 
-test('string coding', executable('stringcoding-test', ['stringcoding-test.vala'],
+test('String Coding', executable('stringcoding-test', ['stringcoding-test.vala'],
+     dependencies: [glib, gobject, tensorflow]))
+
+test('Session Options', executable('sessionoptions-test', ['sessionoptions-test.vala'],
      dependencies: [glib, gobject, tensorflow]))

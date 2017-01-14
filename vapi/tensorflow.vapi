@@ -83,12 +83,16 @@ namespace TensorFlow {
 	[CCode (cname = "TF_Status", free_function = "TF_DeleteStatus")]
 	[Compact]
 	public class Status {
+
 		[CCode (cname = "TF_NewStatus")]
 		public Status ();
+
 		[CCode (cname = "TF_SetStatus")]
 		public void set (Code code, string msg);
+
 		[CCode (cname = "TF_GetCode")]
 		public Code code ();
+
 		[CCode (cname = "TF_Message")]
 		public unowned string message ();
 	}
@@ -102,12 +106,16 @@ namespace TensorFlow {
 	[CCode (cname = "TF_Buffer", free_function = "TF_DeleteBuffer")]
 	[Compact]
 	public class Buffer {
+
 		[CCode (cname = "data_deallocator")]
 		public delegate void DataDeallocator (uint8[] data);
+
 		[CCode (cname = "TF_NewBuffer")]
 		public Buffer ();
+
 		[CCode (cname = "TF_NewBufferFromString")]
 		public Buffer.from_string (uint8[] proto);
+
 		[CCode (cname = "TF_GetBuffer")]
 		public Buffer @get ();
 	}
@@ -255,7 +263,7 @@ namespace TensorFlow {
 	[CCode (cname = "TF_SessionOptions", free_function = "TF_DeleteSessionOptions")]
 	[Compact]
 	public class SessionOptions {
-		
+
 		/**
 		 * Return a new options object.
 		 */
@@ -320,6 +328,7 @@ namespace TensorFlow {
 	[CCode (cname = "TF_Graph", free_function = "TF_DeleteGraph")]
 	[Compact]
 	public class Graph {
+
 		[CCode (cname = "TF_NewGraph")]
 		public Graph ();
 
@@ -363,7 +372,6 @@ namespace TensorFlow {
 		[CCode (cname = "TF_GraphGetTensorShape")]
 		public void get_tensor_shape (Output output, int64[] dims, Status status);
 
-		
 		/**
 		 * Operation will only be added to this graph when ``finish_operation`` is called, assuming it does not returns an error.
 		 */
@@ -375,7 +383,7 @@ namespace TensorFlow {
 		 */
 		[CCode (cname = "TF_GraphOperationByName")]
 		public Operation? graph_operation_by_name (string oper_name);
-		
+
 		/**
 		 * Iterate through the operations of a graph.
 		 *
@@ -391,19 +399,18 @@ namespace TensorFlow {
 		 */
 		[CCode (cname = "TF_GraphNextOperation")]
 		public Operation next_operation (out size_t pos);
-		
+
 		/**
 		 * Write out a serialized representation of this graph (as a ``graph_def`` protocol message) to ``output_graph_def`` (allocated by {@link Buffer.Buffer}).
 		 */
 		[CCode (cname = "TF_GraphToGraphDef")]
 		public void to_graph_def (Buffer output_graph_def, Status status);
-		
+
 		/**
 		 * Import the graph serialized in ``graph_def``.
 		 */
 		[CCode (cname = "TF_GraphImportGraphDef")]
 		public void import_graph_def(Buffer graph_def, ImportGraphDefOptions options, Status status);
-		
 	}
 
 	/**
@@ -426,13 +433,13 @@ namespace TensorFlow {
 		 */
 		[CCode (cname = "TF_AddInput")]
 		public void add_input (Output input);
-		[CCode (cname = "TF_AddInputList")]
 
 		/**
 		 * For inputs that take a list of tensors.
 		 *
 		 * @param inputs must point to ``Output[num_inputs]``
 		 */
+		[CCode (cname = "TF_AddInputList")]
 		public void add_input_list (Output[] inputs);
 
 		/**
@@ -449,40 +456,58 @@ namespace TensorFlow {
 		 */
 		[CCode (cname = "TF_ColocateWith")]
 		public void colocate_with (Operation op);
+
 		[CCode (cname = "TF_SetAttrString")]
 		public void set_attr_string (string attr_name, uint8[] value);
+
 		[CCode (cname = "TF_SetAttrStringList")]
 		public void set_attr_string_list (string attr_name, [CCode (array_length = false)] uint8[] values, int[] lengths);
+
 		[CCode (cname = "TF_SetAttrInt")]
 		public void set_attr_int (string attr_name, int64 value);
+
 		[CCode (cname = "TF_SetAttrIntList")]
 		public void set_attr_int_list (string attr_name, int64[] values);
+
 		[CCode (cname = "TF_SetAttrFloat")]
 		public void set_attr_float (string attr_name, float value);
+
 		[CCode (cname = "TF_SetAttrFloatList")]
 		public void set_attr_float_list (string attr_name, float[] values);
+
 		[CCode (cname = "TF_SetAttrBool")]
 		public void set_attr_bool (string attr_name, uchar value);
+
 		[CCode (cname = "TF_SetAttrBoolList")]
 		public void set_attr_bool_list (string attr_name, uchar[] values);
+
 		[CCode (cname = "TF_SetAttrType")]
 		public void set_attr_type (string attr_name, DataType value);
+
 		[CCode (cname = "TF_SetAttrTypeList")]
 		public void set_attr_type_list (string attr_name, DataType[] values);
+
 		[CCode (cname = "TF_SetAttrShape")]
 		public void set_attr_shape (string attr_name, int64[] dims);
+
 		[CCode (cname = "TF_SetAttrShapeList")]
 		public void set_attr_shape_list (string attr_name, [CCode (array_length = false)] int64[] dims, int[] num_dims);
+
 		[CCode (cname = "SetAttrTensorShapeProto")]
 		public void set_attr_tensor_shape_proto (string attr_name, void[] proto, Status status);
+
 		[CCode (cname = "SetAttrTensorShapeProtoList")]
 		public void set_attr_tensor_shape_proto_list (string attr_name, [CCode (array_length = false)] uint8[] protos, int[] proto_lens, Status status);
+
 		[CCode (cname = "TF_SetAttrTensor")]
 		public void set_attr_tensor (string attr_name, Tensor value, Status status);
+
 		[CCode (cname = "TF_SetAttrTensorList")]
 		public void set_attr_tensor_list (string attr_name, Tensor[] values, Status status);
+
 		[CCode (cname = "TF_SetAttrValueProto")]
 		public void set_attr_value_proto (string attr_name, void[] proto, Status status);
+
 		[CCode (cname = "TF_FinishOperation")]
 		public void finish_operation (Status status);
 	}
@@ -492,74 +517,109 @@ namespace TensorFlow {
 	 */
 	[CCode (cname = "TF_Operation", destroy_function = "")]
 	public class Operation {
+
 		[CCode (cname = "TF_OperationName")]
 		public unowned string name ();
+
 		[CCode (cname = "TF_OperationOpType")]
 		public unowned string op_type (Port oper_in);
+
 		[CCode (cname = "TF_OperationDevice")]
 		public unowned string device ();
+
 		[CCode (cname = "TF_OperationNumOutputs")]
 		public int num_outputs ();
+
 		[CCode (cname = "TF_OperationOutputType")]
 		public DataType output_type (Port oper_out);
+
 		[CCode (cname = "TF_OperationOutputListLength")]
 		public int output_list_length (string arg_name, Status status);
+
 		[CCode (cname = "TF_OperationNumInputs")]
 		public int num_inputs ();
+
 		[CCode (cname = "TF_OperationInputType")]
 		public DataType input_type (Port oper_in);
+
 		[CCode (cname = "TF_OperationInputListLength")]
 		public int input_list_length (string arg_name, Status status);
+
 		[CCode (cname = "TF_OperationInput")]
 		extern Port input(Port oper_in);
+
 		[CCode (cname = "TF_OperationOutputNumConsumers")]
 		extern int output_num_consumers (Port oper_out);
+
 		[CCode (cname = "TF_OperationOutputConsumers")]
 		public int operation_output_consumers (Port oper_out, Port[] consumers);
+
 		[CCode (cname = "TF_OperationNumControlInputs")]
 		public int num_control_inputs ();
+
 		[CCode (cname = "TF_OperationGetControlInputs")]
 		public int get_control_inputs (Operation[] control_inputs);
+
 		[CCode (cname = "TF_OperationNumControlOutputs")]
 		public int num_control_outputs ();
+
 		[CCode (cname = "TF_OperationGetControlOutputs")]
 		public int get_control_outputs (Operation[] control_outputs);
+
 		[CCode (cname = "TF_OperationGetAttrMetadata")]
 		public AttrMetadata get_attr_metadata (string attr_name, Status status);
+
 		[CCode (cname = "TF_OperationGetAttrString")]
 		public void get_attr_string (string attr_name, void[] value, Status status);
+
 		[CCode (cname = "TF_OperationGetAttrStringList")]
 		public void get_attr_string_list (string attr_name, uint8[,] values, uint8[] storage, Status status);
+
 		[CCode (cname = "TF_OperationGetAttrInt")]
 		public void get_attr_int (string attr_name, out int64 value, Status status);
+
 		[CCode (cname = "TF_OperationGetAttrIntList")]
 		public void get_attr_int_list (string attr_name, out int64 values, int max_values, Status status);
+
 		[CCode (cname = "TF_OperationGetAttrFloat")]
 		public void get_attr_float (string attr_name, out float value, Status status);
+
 		[CCode (cname = "TF_OperationGetAttrFloatList")]
 		public void get_attr_float_list (string attr_name, out float values, int max_values, Status status);
+
 		[CCode (cname = "TF_OperationGetAttrBool")]
 		public void get_attr_bool (string attr_name, out uchar value, Status status);
+
 		[CCode (cname = "TF_OperationGetAttrBoolList")]
 		public void get_attr_bool_list (string attr_name, out uchar values, int max_values, Status status);
+
 		[CCode (cname = "TF_OperationGetAttrType")]
 		public void get_attr_type (string attr_name, out DataType value, Status status);
+
 		[CCode (cname = "TF_OperationGetAttrTypeList")]
 		public void get_attr_type_list (string attr_name, out DataType values, int max_values, Status status);
+
 		[CCode (cname = "TF_OperationGetAttrShape")]
 		public void get_attr_shape (string attr_name, int64* value, int num_dims, Status status);
+
 		[CCode (cname = "TF_OperationGetAttrShapeList")]
 		public void get_attr_shape_list (string attr_name, int64[,] dims, int64[] storage, Status status);
+
 		[CCode (cname = "TF_OperationGetAttrTensorShapeProto")]
 		public void get_attr_tensor_shape_proto (string attr_name, Buffer value, Status status);
+
 		[CCode (cname = "TF_OperationGetAttrTensorShapeProtoList")]
 		public void get_attr_tensor_shape_proto_list (string attr_name, Buffer[] values, Status status);
+
 		[CCode (cname = "TF_OperationGetAttrTensor")]
 		public void get_attr_tensor (string attr_name, out Tensor value, Status status);
+
 		[CCode (cname = "TF_OperationGetAttrTensorList")]
 		public void get_attr_tensor_list (string attr_name, out Tensor[] values, Status status);
+
 		[CCode (cname = "TF_OperationGetAttrValueProto")]
 		public void get_attr_value_proto (string attr_name, Buffer output_attr_value, Status status);
+
 		[CCode (cname = "TF_OperationToNodeDef")]
 		extern void to_node_def (Buffer output_node_def, Status status);
 	}
@@ -595,8 +655,10 @@ namespace TensorFlow {
 	[CCode (cname = "TF_ImportGraphDefOptions", free_function = "TF_DeleteImportGraphDefOptions")]
 	[Compact]
 	public class ImportGraphDefOptions {
+
 		[CCode (cname = "TF_NewImportGraphDefOptions")]
 		public ImportGraphDefOptions ();
+
 		[CCode (cname = "TF_ImportGraphDefOptionsSetPrefix")]
 		public void set_prefix (string prefix);
 	}
@@ -604,12 +666,16 @@ namespace TensorFlow {
 	[CCode (cname = "TF_SessionWithGraph", free_function = "")]
 	[Compact]
 	public class SessionWithGraph {
+
 		[CCode (cname = "TF_NewSessionWithGraph")]
 		public SessionWithGraph (Graph graph, SessionOptions opts, Status status);
+
 		[CCode (cname = "TF_CloseSessionWithGraph")]
 		public void close (Status status);
+
 		[CCode (cname = "TF_DeleteSessionWithGraph")]
 		public void delete (Status status);
+
 		[CCode (cname = "TF_SessionRun")]
 		public Status run (
 			// RunOptions
@@ -622,6 +688,7 @@ namespace TensorFlow {
 			Operation[] target_opers,
 			// RunMetadata
 			Buffer run_metadata);
+
 		[CCode (cname = "TF_SessionPRunSetup")]
 		public Status session_p_run_setup (
 			// Input names
@@ -632,6 +699,7 @@ namespace TensorFlow {
 			Operation[] target_opers,
 			// Output handle
 			string* handle);
+
 		[CCode (cname = "TF_SessionPRun")]
 		public void session_p_run (string handle,
 								   // Input tensors
@@ -645,8 +713,10 @@ namespace TensorFlow {
 	[CCode (cname = "TF_Session", free_function = "TF_DeleteSession")]
 	[Compact]
 	public class Session {
+
 		[CCode (cname = "TF_NewSession")]
 		public Session (SessionOptions opts, Status status);
+
 		[CCode (cname = "TF_LoadSessionFromSavedModel")]
 		public Session load_session_from_saved_model (SessionOptions session_options,
 													  Buffer run_options,
@@ -674,12 +744,16 @@ namespace TensorFlow {
 
 		[CCode (cname = "TF_CloseSession")]
 		public Status close (Status status);
+
 		/* [CCode (cname = "TF_DeleteSession")] */
 		/* public Status delete (Status status); */
+
 		[CCode (cname = "TF_Reset")]
 		public void reset (SessionOptions opt, string[] containers, Status status);
+
 		[CCode (cname = "TF_ExtendGraph")]
 		public void extend_graph (void[] proto, Status status);
+
 		[CCode (cname = "TF_Run")]
 		public Status run (
 			// RunOptions
@@ -692,6 +766,7 @@ namespace TensorFlow {
 			[CCode (array_length = false)] string target_oper_names[],
 			// RunMetadata
 			Buffer run_metadata);
+
 		[CCode (cname = "TF_PRunSetup")]
 		extern Status p_run_setup (
 			// Input names
@@ -702,6 +777,7 @@ namespace TensorFlow {
 			string[] target_oper_names,
 			// Output handle
 			out string handle);
+
 		[CCode (cname = "TF_PRun")]
 		extern Status p_run (string handle,
 							 // Input tensors
@@ -715,12 +791,16 @@ namespace TensorFlow {
 	[CCode (cname = "TF_Library", free_function = "")]
 	[Compact]
 	public class Library {
+
 		[CCode (cname = "TF_LoadLibrary")]
 		public Library.load (string library_filename, Status status);
+
 		[CCode (cname = "TF_GetOpList")]
 		public Buffer get_op_list (Library lib_handle);
+
 		[CCode (cname = "TF_DeleteLibraryHandle")]
 		public void delete ();
+
 		[CCode (cname = "TF_GetAllOpList")]
 		public Buffer get_all_op_list ();
 	}

@@ -297,8 +297,8 @@ namespace TensorFlow {
 	 */
 	[CCode (cname = "TF_Input")]
 	public struct Input {
-		Operation oper;
-		int index;
+		public Operation oper;
+		public int index;
 	}
 
 	/**
@@ -308,8 +308,8 @@ namespace TensorFlow {
 	 */
 	[CCode (cname = "TF_Output")]
 	public struct Output {
-		Operation oper;
-		int index;
+		public Operation oper;
+		public int index;
 	}
 
 	/**
@@ -567,8 +567,8 @@ namespace TensorFlow {
 	[CCode (cname = "TF_Port", destroy_function = "", has_type_id = false)]
 	[SimpleType]
 	public struct Port {
-		Operation oper;
-		int index;
+		public Operation oper;
+		public int index;
 	}
 
 	[CCode (cname = "TF_AttrType", cprefix = "TF_ATTR_", has_type_id = false)]
@@ -586,10 +586,10 @@ namespace TensorFlow {
 
 	[CCode (cname = "TF_AttrMetadata", destroy_function = "", has_type_id = false)]
 	public struct AttrMetadata {
-		uchar is_list;
-		int64 list_size;
-		AttrType type;
-		int64 total_size;
+		public uchar is_list;
+		public int64 list_size;
+		public AttrType type;
+		public int64 total_size;
 	}
 
 	[CCode (cname = "TF_ImportGraphDefOptions", free_function = "TF_DeleteImportGraphDefOptions")]

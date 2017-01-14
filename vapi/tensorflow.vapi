@@ -655,6 +655,23 @@ namespace TensorFlow {
 													  Graph graph,
 													  Buffer meta_graph_def,
 													  Status status);
+
+		/**
+		 * Creates a new Session and initialize the state (tensors and others assets).
+		 *
+		 * @param session_options options for session creation
+		 * @param run_options options to initialize the state of tensors and other assets
+		 * @param export_dir must be set to the path of the exported SavedModel
+		 * @param tags must include the set of tags used to identify one MetaGraphDef in the SavedModel
+		 * @param graph must be a graph newly allocated with {@link Graph},
+		 * which will be populated with the contents of the Graph
+		 * @param meta_graph_def if successful, it will be populated with the MetaGraphDef of the loaded model
+		 */
+		[CCode (cname = "TF_LoadSessionFromSavedModel")]
+		public Session.from_saved_model ( SessionOptions session_options, Buffer run_options,
+										string export_dir, string[] tags, int tags_len,
+										Graph graph, Buffer meta_graph_def, Status status);
+
 		[CCode (cname = "TF_CloseSession")]
 		public Status close (Status status);
 		/* [CCode (cname = "TF_DeleteSession")] */

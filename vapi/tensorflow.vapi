@@ -634,6 +634,12 @@ namespace TensorFlow {
 		extern void to_node_def (Buffer output_node_def, Status status);
 	}
 
+	/**
+	 * Describes the type of the value of an attribute on an operation.
+	 *
+	 * Type of elements of the list if ``is_list != 0``<<BR>>
+	 * Type of the single value stored in the attribute if ``is_list == 0``
+	 */
 	[CCode (cname = "TF_AttrType", cprefix = "TF_ATTR_", has_type_id = false)]
 	public enum AttrType {
 		STRING = 0,
@@ -647,11 +653,43 @@ namespace TensorFlow {
 		FUNC = 8,
 	}
 
+	/**
+	 * Describes the value of an attribute on an operation.
+	 */
 	[CCode (cname = "TF_AttrMetadata", destroy_function = "", has_type_id = false)]
 	public struct AttrMetadata {
+		/**
+		 * ``1`` if the attribute value is a list, ``0`` otherwise
+		 */
 		public uchar is_list;
+		/**
+		 * Length of the list if ``is_list == 1``. Undefined otherwise
+		 */
 		public int64 list_size;
+		/**
+		 * Type of the single value stored in the attribute if ``is_list == 0``. Type of the elements of the list otherwise
+		 */
 		public AttrType type;
+		/**
+		 * Total size the attribute value.
+		 *
+		 * The unites of total size depend on ``is_list`` and ``type``:
+		 *
+		 * 1. If ``type == {@link AttrType.STRING}`` and ``is_list == 0``<<BR>>
+		 * then ``total_size`` is the byte size of the string valued attribute
+		 *
+		 * 2. If ``type == {@link AttrType.STRING}`` and ``is_list == 1``<<BR>>
+		 * then ``total_size`` is the number of dimensions of the shape valued attribute, or ``-1``
+		 *
+		 * 3. If ``type == {@link AttrType.SHAPE}`` and ``is_list == 0``<<BR>>
+		 * then ``total_size`` is the number of dimensions of the shape valued attribute, or ``-1``
+		 *
+		 * 4. If ``type == {@link AttrType.SHAPE}`` and ``is_list == 1``<<BR>>
+		 * then ``total_size`` is the cumulative number of dimensions of all shapes in the list
+		 *
+		 * 5. Otherwise, ``total_size`` is undefined
+		 * @see AttrType
+		 */
 		public int64 total_size;
 	}
 

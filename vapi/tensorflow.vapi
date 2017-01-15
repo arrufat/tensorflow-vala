@@ -637,8 +637,7 @@ namespace TensorFlow {
 	/**
 	 * Describes the type of the value of an attribute on an operation.
 	 *
-	 * Type of elements of the list if ``is_list != 0``<<BR>>
-	 * Type of the single value stored in the attribute if ``is_list == 0``
+	 * @see AttrMetadata
 	 */
 	[CCode (cname = "TF_AttrType", cprefix = "TF_ATTR_", has_type_id = false)]
 	public enum AttrType {
@@ -655,6 +654,8 @@ namespace TensorFlow {
 
 	/**
 	 * Describes the value of an attribute on an operation.
+	 *
+	 * @see AttrType
 	 */
 	[CCode (cname = "TF_AttrMetadata", destroy_function = "", has_type_id = false)]
 	public struct AttrMetadata {

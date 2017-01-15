@@ -52,6 +52,16 @@ namespace TensorFlow {
 	}
 
 	/**
+	 * Returns the ``sizeof ()`` for the underlying type in ``dt``.
+	 *
+	 * @return <<BR>>
+	 * ``sizeof ()`` the underlying type corresponding to the given {@link DataType} enum value<<BR>>
+	 * ``0`` for variable length types (eg. {@link DataType.STRING}) or on failure
+	 */
+	[CCode (cname = "TF_DataTypeSize")]
+	public size_t data_type_size (DataType dt);
+
+	/**
 	 * Holds an error code.  The enum values here are identical to
 	 * corresponding values in error_codes.proto.
 	 */

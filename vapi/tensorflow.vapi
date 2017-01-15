@@ -532,7 +532,7 @@ namespace TensorFlow {
 		public unowned string name ();
 
 		[CCode (cname = "TF_OperationOpType")]
-		public unowned string op_type (Port oper_in);
+		public unowned string op_type ();
 
 		[CCode (cname = "TF_OperationDevice")]
 		public unowned string device ();
@@ -541,7 +541,7 @@ namespace TensorFlow {
 		public int num_outputs ();
 
 		[CCode (cname = "TF_OperationOutputType")]
-		public DataType output_type (Port oper_out);
+		public DataType output_type ();
 
 		[CCode (cname = "TF_OperationOutputListLength")]
 		public int output_list_length (string arg_name, Status status);
@@ -550,19 +550,19 @@ namespace TensorFlow {
 		public int num_inputs ();
 
 		[CCode (cname = "TF_OperationInputType")]
-		public DataType input_type (Port oper_in);
+		public DataType input_type (Input oper_in);
 
 		[CCode (cname = "TF_OperationInputListLength")]
 		public int input_list_length (string arg_name, Status status);
 
 		[CCode (cname = "TF_OperationInput")]
-		extern Port input(Port oper_in);
+		extern Output input(Input oper_in);
 
 		[CCode (cname = "TF_OperationOutputNumConsumers")]
-		extern int output_num_consumers (Port oper_out);
+		extern int output_num_consumers (Output oper_out);
 
 		[CCode (cname = "TF_OperationOutputConsumers")]
-		public int operation_output_consumers (Port oper_out, Port[] consumers);
+		public int operation_output_consumers (Output oper_out, Input consumers);
 
 		[CCode (cname = "TF_OperationNumControlInputs")]
 		public int num_control_inputs ();
@@ -634,13 +634,6 @@ namespace TensorFlow {
 		extern void to_node_def (Buffer output_node_def, Status status);
 	}
 
-	[CCode (cname = "TF_Port", destroy_function = "", has_type_id = false)]
-	[SimpleType]
-	public struct Port {
-		public Operation oper;
-		public int index;
-	}
-
 	[CCode (cname = "TF_AttrType", cprefix = "TF_ATTR_", has_type_id = false)]
 	public enum AttrType {
 		STRING = 0,
@@ -691,9 +684,9 @@ namespace TensorFlow {
 			// RunOptions
 			Buffer run_options,
 			// Input tensors
-			[CCode (array_length = false)] Port inputs, Tensor[] input_values,
+			[CCode (array_length = false)] Output inputs, Tensor[] input_values,
 			// Output tensors
-			[CCode (array_length = false)] Port outputs, Tensor[] output_values,
+			[CCode (array_length = false)] Output outputs, Tensor[] output_values,
 			// Target operations
 			Operation[] target_opers,
 			// RunMetadata
@@ -702,9 +695,9 @@ namespace TensorFlow {
 		[CCode (cname = "TF_SessionPRunSetup")]
 		public Status session_p_run_setup (
 			// Input names
-			Port[] inputs,
+			Output inputs,
 			// Output names
-			Port[] outputs,
+			Output outputs,
 			// Target operations
 			Operation[] target_opers,
 			// Output handle
@@ -713,9 +706,9 @@ namespace TensorFlow {
 		[CCode (cname = "TF_SessionPRun")]
 		public void session_p_run (string handle,
 								   // Input tensors
-								   [CCode (array_length = false)] Port inputs, Tensor[] input_values,
+								   [CCode (array_length = false)] Output inputs, Tensor[] input_values,
 								   // Output tensors
-								   [CCode (array_length = false)] Port outputs, Tensor[] output_values,
+								   [CCode (array_length = false)] Output outputs, Tensor[] output_values,
 								   // Target operations
 								   Operation[] target_opers);
 	}

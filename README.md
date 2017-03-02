@@ -39,11 +39,10 @@ This step is the same as the one for the [Rust bindings][rust_bindings]:
 1. Clone this repository and `cd` into it and:
 
 ``` bash
-mkdir build && cd build
-PKG_CONFIG_PATH=`pwd`/../pkgconfig meson --prefix <install prefix (/usr/local by default)>
-ninja
-ninja test
-sudo ninja install
+meson build --prefix <install prefix (/usr/local by default)>
+ninja -C build
+ninja -C build test
+sudo ninja -C build install
 ```
 
 ### On Arch Linux

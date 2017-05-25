@@ -11,7 +11,7 @@
 /**
  * The main namespace containing all current functionality.
  */
-[CCode (cprefix = "TF_", cheader_filename = "tensorflow/c_api.h")]
+[CCode (cprefix = "TF_", cheader_filename = "tensorflow/c/c_api.h")]
 namespace TensorFlow {
 
 	/**

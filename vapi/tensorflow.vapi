@@ -94,15 +94,40 @@ namespace TensorFlow {
 	[Compact]
 	public class Status {
 
+		/**
+		 * Return a new status object.
+		 */
 		[CCode (cname = "TF_NewStatus")]
 		public Status ();
 
+		/**
+		 * Record ``<code, msg>`` in the current Status.
+		 *
+		 * Any previous information is lost.
+		 * A common use is to clear status:
+		 * {{{
+		 * using TensorFlow;
+		 * var status = new Status ();
+		 * status.set (Code.OK, "");
+		 * }}}
+		 */
 		[CCode (cname = "TF_SetStatus")]
-		public void set (Code code, string msg);
+		public void @set (Code code, string msg);
 
+		/**
+		 * Return the code record in the current status.
+		 *
+		 * @return {@link Code} of current status.
+		 */
 		[CCode (cname = "TF_GetCode")]
 		public Code code ();
 
+		/**
+		 * Return the string containing the error message in the current status.
+		 *
+		 * Always returns an empty string if {@link Code} is {@link Code.OK}.
+		 * @return message string of the current status.
+		 */
 		[CCode (cname = "TF_Message")]
 		public unowned string message ();
 	}
